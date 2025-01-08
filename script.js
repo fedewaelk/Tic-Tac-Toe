@@ -31,3 +31,9 @@ document.addEventListener("DOMContentLoaded", () => {
     gameModule.renderBoard();
   });
   
+
+  const GameController = () => {
+    let currentPlayer = "x";
+    let players = {x: "player 1", O: "player 2"};
+    let gameOn = false;
+  }
