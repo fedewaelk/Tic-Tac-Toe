@@ -36,4 +36,15 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentPlayer = "x";
     let players = {x: "player 1", O: "player 2"};
     let gameOn = false;
+
+    const switchPlayer = () => {
+        currentPlayer = currentPlayer === "X" ? "O" : "X";
+    };
+
+    const checkWinner = () => {
+        const board = gameModule.getBoard();
+        const winLines = [
+            []
+        ]
+    }
   }
