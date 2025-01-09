@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet">
     <title>Tic Tac Toe</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Tic Tac Toe</h1>
     <div>
-        <label>Player one: <input id="player1" type="text" placeholder="player name"></label>
-        <label>Player two: <input id="player2" type="text" placeholder="player name"></label>
+        <label>Player one: <input class="player-input" id="player1" type="text" placeholder="player name"></label>
+        <label>Player two: <input class="player-input" id="player2" type="text" placeholder="player name"></label>
     </div>
     <button id="startBtn">Start Game</button>
     <div id="gameBoard"></div>
     <div id="controls">
-        <input id="result" type="text" readonly placeholder="Results">
+        <input id="gameStatus" type="text" readonly>
     </div>
     <script src="script.js"></script>
 </body>

@@ -32,10 +32,6 @@ const gameModule = (() => {
     return { renderBoard, updateBox, resetBoard, getBoard };
 })();
 
-document.addEventListener("DOMContentLoaded", () => {
-    gameModule.renderBoard();
-});
-
 const GameController = () => {
     let currentPlayer = "X";
     let players = { X: "Player 1", O: "Player 2" };
@@ -43,7 +39,7 @@ const GameController = () => {
 
     const switchPlayer = () => {
         currentPlayer = currentPlayer === "X" ? "O" : "X";
-        document.getElementById("result").value = `${players[currentPlayer]}'s Turn`;
+        document.getElementById("gameStatus").value = `${players[currentPlayer]}'s Turn`;
     };
 
     const checkWinner = () => {
@@ -90,16 +86,16 @@ const GameController = () => {
         currentPlayer = "X";
         gameOn = true;
         gameModule.resetBoard();
-        document.getElementById("result").value = `${players[currentPlayer]}'s Turn`;
+        document.getElementById("gameStatus").value = `${players[currentPlayer]}'s Turn`;
     };
 
     const endGame = (winner) => {
         gameOn = false;
-        const result = document.getElementById("result");
+        const gameStatus = document.getElementById("gameStatus");
         if (winner === "tie") {
-            result.value = "¡It's a Tie!";
+            gameStatus.value = "¡It's a Tie!";
         } else {
-            result.value = `¡${players[winner]} wins!`;
+            gameStatus.value = `¡${players[winner]} wins!`;
         }
     };
 
