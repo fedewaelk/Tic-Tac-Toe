@@ -18,9 +18,12 @@ const gameModule = (() => {
     const updateBox = (index, mark) => {
         if (gameBoard[index] === "") {
             gameBoard[index] = mark;
-            renderBoard();
+            const box = document.querySelectorAll(".box")[index];
+            box.textContent = mark;
+            box.classList.add(mark);
+            
         }
-    };
+    };    
 
     const resetBoard = () => {
         gameBoard = ["", "", "", "", "", "", "", "", ""];
