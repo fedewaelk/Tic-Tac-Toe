@@ -9,14 +9,21 @@
 </head>
 <body>
     <h1>Tic Tac Toe</h1>
-    <div>
-        <label>Player one: <input class="player-input" id="player1" type="text" placeholder="player name"></label>
-        <label>Player two: <input class="player-input" id="player2" type="text" placeholder="player name"></label>
-    </div>
     <button id="startBtn">Start Game</button>
+    <div id="playerInputs">
+        <label>Player one: <input class="player-input" id="player1" type="text" placeholder="player 1 name"></label>
+        <label>Player two: <input class="player-input" id="player2" type="text" placeholder="player 2 name"></label>
+    </div>
     <div id="gameBoard"></div>
     <div id="controls">
         <input id="gameStatus" type="text" readonly>
+    </div>
+    <div id="results" class="hidden">
+        <p>Results:</p>
+        <label id="player1Label" for="player1Wins">Player 1:</label>
+        <input type="text" id="player1Wins" value="0" readonly>
+        <label id="player2Label" for="player2Wins">Player 2:</label>
+        <input type="text" id="player2Wins" value="0" readonly>
     </div>
     <script src="script.js"></script>
 </body>

@@ -9,6 +9,10 @@ body {
     background-size: 20px 20px;
 }
 
+.hidden {
+    display: none;
+}
+
 input {
     background-color: transparent;
     border: none;
@@ -26,20 +30,53 @@ input[type="text"] {
     border: none;
 }
 
-#gameBoard {
-    display: grid;
-    grid-template-columns: repeat(3, 100px);
-    
+button {
+    padding: 12px 24px;
+    font-family: inherit;
+    font-size: 16px;
+    color: #4CAF50;
+    font-weight: bold;
+    background-color: rgba(76, 175, 80, 0.2);
+    border: 2px solid #4CAF50;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-.box { width: 100px;
-    height: 100px; 
-    border: 1px solid black;
+button:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#gameBoard {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);    
+}
+
+.box { 
+    width: 100px;
+    height: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 4rem;
     cursor: pointer;
+}
+
+.box.X {
+    color: red;
+}
+
+.box.O {
+    color: blue;
+}
+
+.box:nth-child(3n+1):not(:last-child), .box:nth-child(3n+2):not(:last-child) {
+    border-right: 3px solid black;
+}
+  
+.box:nth-child(-n+6):not(:nth-child(7), :nth-child(8), :nth-child(9)) {
+    border-bottom: 3px solid black;
 }
 
 #gameStatus:hover {

@@ -36,6 +36,7 @@ const GameController = () => {
     let currentPlayer = "X";
     let players = { X: "Player 1", O: "Player 2" };
     let gameOn = false;
+    let wins = { X: 0, O: 0 };
 
     const switchPlayer = () => {
         currentPlayer = currentPlayer === "X" ? "O" : "X";
@@ -86,6 +87,14 @@ const GameController = () => {
         currentPlayer = "X";
         gameOn = true;
         gameModule.resetBoard();
+
+        document.getElementById("player1Label").textContent = `${player1Name}:`;
+        document.getElementById("player2Label").textContent = `${player2Name}:`;
+
+        document.getElementById("playerInputs").classList.add("hidden");
+        document.getElementById("gameBoard").classList.remove("hidden");
+        document.getElementById("results").classList.remove("hidden");
+
         document.getElementById("gameStatus").value = `${players[currentPlayer]}'s Turn`;
     };
 
@@ -95,6 +104,8 @@ const GameController = () => {
         if (winner === "tie") {
             gameStatus.value = "¡It's a Tie!";
         } else {
+            wins[winner]++;
+            document.getElementById(`${winner === "X" ? "player1Wins" : "player2Wins"}`).value = wins[winner];
             gameStatus.value = `¡${players[winner]} wins!`;
         }
     };
