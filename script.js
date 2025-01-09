@@ -10,7 +10,7 @@ const gameModule = (() => {
             box.classList.add("box");
             if (mark) box.classList.add("taken");
             box.textContent = mark;
-            box.addEventListener("click", () => console.log(`Clic on box ${index}`));
+            box.addEventListener("click", () => gameController.makeMove(index));
             board.appendChild(box);
         });
     };
@@ -22,23 +22,28 @@ const gameModule = (() => {
         }
     };
 
+    const resetBoard = () => {
+        gameBoard = ["", "", "", "", "", "", "", "", ""];
+        renderBoard();
+    };
+
     const getBoard = () => gameBoard;
 
-    return { renderBoard, updateBox, getBoard };
+    return { renderBoard, updateBox, resetBoard, getBoard };
 })();
 
 document.addEventListener("DOMContentLoaded", () => {
     gameModule.renderBoard();
-  });
-  
+});
 
-  const GameController = () => {
-    let currentPlayer = "x";
-    let players = {x: "player 1", O: "player 2"};
+const GameController = () => {
+    let currentPlayer = "X";
+    let players = { X: "Player 1", O: "Player 2" };
     let gameOn = false;
 
     const switchPlayer = () => {
         currentPlayer = currentPlayer === "X" ? "O" : "X";
+        document.getElementById("result").value = `${players[currentPlayer]}'s Turn`;
     };
 
     const checkWinner = () => {
@@ -54,20 +59,20 @@ document.addEventListener("DOMContentLoaded", () => {
             [2, 4, 6]
         ];
 
-        for (line of winLines) {
-            const [a, b ,c] = line;
+        for (const line of winLines) {
+            const [a, b, c] = line;
             if (board[a] && board[a] === board[b] && board[a] === board[c]) {
                 return board[a];
             }
         }
 
-        return board.includes("") ? null : "Tie"
+        return board.includes("") ? null : "tie";
     };
 
     const makeMove = (index) => {
         if (!gameOn) return;
         if (gameModule.getBoard()[index]) return;
-        
+
         gameModule.updateBox(index, currentPlayer);
         const winner = checkWinner();
         if (winner) {
@@ -80,11 +85,28 @@ document.addEventListener("DOMContentLoaded", () => {
     const startGame = () => {
         const player1Name = document.getElementById("player1").value || "Player 1";
         const player2Name = document.getElementById("player2").value || "Player 2";
-    
+
         players = { X: player1Name, O: player2Name };
-        currentPlayer = 'X';
+        currentPlayer = "X";
         gameOn = true;
         gameModule.resetBoard();
-        document.getElementById('result').value = `${players[currentPlayer]}'s Turn`;
-      };
-  }
+        document.getElementById("result").value = `${players[currentPlayer]}'s Turn`;
+    };
+
+    const endGame = (winner) => {
+        gameOn = false;
+        const result = document.getElementById("result");
+        if (winner === "tie") {
+            result.value = "¡It's a Tie!";
+        } else {
+            result.value = `¡${players[winner]} wins!`;
+        }
+    };
+
+    return { makeMove, startGame };
+};
+
+const gameController = GameController();
+
+document.getElementById("startBtn").addEventListener("click", gameController.startGame);
+
