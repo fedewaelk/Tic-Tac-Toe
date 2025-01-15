@@ -17,11 +17,18 @@ body {
     height: 100%;
     background-color: transparent;
     border-right: 6px double pink;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: space-between;
 }
 
 .hole {
+    width: 20px;
+    height: 20px;
     background-color: grey;
-    border-radius: 25%;
+    border-radius: 50%;
+    margin: 30px;
 }
 
 .hidden {
